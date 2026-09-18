@@ -1,0 +1,63 @@
+{
+  "attribute_shock_mappings": {
+    "capacity": {
+      "direction": "reduction",
+      "impact_dimension": "capacity",
+      "formula": "relative_drop_pct = max(0.0, min(100.0, (current_val - new_val) / max(current_val, 1e-6) * 100.0))",
+      "effective_severity": "relative_drop_pct / 100.0",
+      "description": "Reduces operational processing or handling capacity."
+    },
+    "congestion": {
+      "direction": "increase",
+      "impact_dimension": "congestion",
+      "formula": "congestion_surge_pct = max(0.0, min(100.0, (new_val - current_val)))",
+      "effective_severity": "congestion_surge_pct / 100.0",
+      "transit_delay_multiplier": 0.05,
+      "description": "Increases bottlenecking, queueing delays, and decreases throughput."
+    },
+    "availability": {
+      "direction": "reduction",
+      "impact_dimension": "availability",
+      "formula": "availability_loss_pct = max(0.0, min(100.0, (current_val - new_val) / max(current_val, 1e-6) * 100.0))",
+      "effective_severity": "availability_loss_pct / 100.0",
+      "description": "Represents unexpected node/link outage or downtime."
+    },
+    "reliability": {
+      "direction": "reduction",
+      "impact_dimension": "reliability",
+      "formula": "reliability_drop_pct = max(0.0, min(100.0, (current_val - new_val) / max(current_val, 1e-6) * 100.0))",
+      "effective_severity": "reliability_drop_pct / 100.0",
+      "description": "Reflects increased fulfillment unpredictability and schedule slippage."
+    },
+    "transit_time_days": {
+      "direction": "increase",
+      "impact_dimension": "transit_delay",
+      "formula": "added_days = max(0.0, new_val - current_val)",
+      "effective_severity": "min(1.0, added_days / 14.0)",
+      "description": "Direct transit schedule delay along transit corridors."
+    },
+    "transport_cost_per_unit": {
+      "direction": "increase",
+      "impact_dimension": "transport_cost",
+      "formula": "cost_surge_pct = max(0.0, (new_val - current_val) / max(current_val, 1e-6) * 100.0)",
+      "effective_severity": "min(1.0, cost_surge_pct / 100.0)",
+      "description": "Direct freight rate or corridor transit surcharge."
+    },
+    "severity": {
+      "direction": "custom",
+      "impact_dimension": "general",
+      "formula": "severity = float(new_val if new_val is not None else current_val)",
+      "effective_severity": "min(1.0, max(0.0, severity))",
+      "description": "Generic normalized disruption severity (0.0 to 1.0)."
+    }
+  },
+  "shock_type_categories": {
+    "source": 0,
+    "transit_gateway": 1,
+    "corridor": 2,
+    "processing": 3,
+    "storage": 4,
+    "distribution": 5,
+    "general": 0
+  }
+}

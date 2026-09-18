@@ -1,0 +1,78 @@
+{
+  "node_roles": {
+    "source": {
+      "description": "Origin nodes that supply raw materials, components, or primary inputs into the supply chain.",
+      "aliases": ["supplier", "vendor", "mine", "source", "farm", "raw_material", "origin", "producer"],
+      "default_attributes": {
+        "is_primary": true,
+        "share_of_supply": 1.0,
+        "reliability": 0.88,
+        "availability": 0.90,
+        "capacity_utilization": 0.75,
+        "lead_time_days": 14.0
+      }
+    },
+    "transit_gateway": {
+      "description": "Cross-modal or transshipment gateways such as ports, airports, and border customs.",
+      "aliases": ["port", "seaport", "airport", "railhead", "checkpoint", "customs", "terminal", "border", "gateway"],
+      "default_attributes": {
+        "is_primary": true,
+        "share_of_volume": 1.0,
+        "capacity_utilization": 0.80,
+        "dwell_time_days": 3.0,
+        "congestion": 20.0
+      }
+    },
+    "processing": {
+      "description": "Transformation and manufacturing nodes that convert inputs into finished or semi-finished goods.",
+      "aliases": ["factory", "plant", "mill", "assembly", "refinery", "manufacturing", "processing_unit", "fabrication"],
+      "default_attributes": {
+        "capacity_utilization": 0.80,
+        "inventory_days": 20.0,
+        "safety_stock_days": 7.0,
+        "daily_throughput": 1000.0,
+        "importance_weight": 0.90
+      }
+    },
+    "storage": {
+      "description": "Inventory storage, buffer, and warehousing facilities holding reserves.",
+      "aliases": ["warehouse", "depot", "silo", "stockyard", "storage", "buffer_hub"],
+      "default_attributes": {
+        "capacity_utilization": 0.70,
+        "inventory_days": 25.0,
+        "safety_stock_days": 10.0,
+        "storage_capacity_units": 50000.0,
+        "importance_weight": 0.65
+      }
+    },
+    "distribution": {
+      "description": "Fulfillment and outbound logistics hubs routing products to target markets or retailers.",
+      "aliases": ["distribution_center", "distribution", "hub", "fulfillment", "dc", "logistics_center", "sorting_hub"],
+      "default_attributes": {
+        "capacity_utilization": 0.75,
+        "service_level": 0.95,
+        "dispatch_capacity": 5000.0,
+        "importance_weight": 0.70
+      }
+    },
+    "demand": {
+      "description": "End-market, consumer, client, or retail terminal nodes where goods are received.",
+      "aliases": ["customer", "retail", "client", "market", "end_user", "store", "sink", "buyer", "consumer"],
+      "default_attributes": {
+        "target_service_level": 0.98,
+        "importance_weight": 1.0
+      }
+    },
+    "corridor": {
+      "description": "Transit corridors, transportation links, or carrier services.",
+      "aliases": ["road", "rail", "sea", "air", "pipeline", "logistics", "shipping_lane", "transit"],
+      "default_attributes": {
+        "distance_km": 500.0,
+        "transit_time_days": 2.0,
+        "transport_cost_per_unit": 25.0,
+        "reliability": 0.92,
+        "congestion": 15.0
+      }
+    }
+  }
+}

@@ -1,0 +1,130 @@
+{
+  "id": "industrial_equipment_coimbatore",
+  "name": "Representative / Demonstration Supply Network: Pumps, Motors & Heavy Engineering (Coimbatore)",
+  "industry": "Industrial Equipment",
+  "region": "Western Tamil Nadu",
+  "network_depth": 5,
+  "nodes": [
+    {
+      "id": "sup_specialty_steel",
+      "name": "Specialty Forgings & Alloy Steel (Salem)",
+      "type": "supplier",
+      "is_primary": true,
+      "share_of_supply": 0.65,
+      "reliability": 0.95,
+      "availability": 0.96
+    },
+    {
+      "id": "sup_copper_wiring",
+      "name": "Enamelled Copper Winding Wire (Hosur)",
+      "type": "supplier",
+      "is_primary": false,
+      "share_of_supply": 0.35,
+      "reliability": 0.92,
+      "availability": 0.93
+    },
+    {
+      "id": "port_cochin",
+      "name": "Vallarpadam Terminal (Cochin Port)",
+      "type": "port",
+      "is_primary": true,
+      "share_of_volume": 0.75,
+      "capacity_utilization": 0.7,
+      "availability": 0.93
+    },
+    {
+      "id": "port_tuticorin",
+      "name": "V.O. Chidambaranar Port (Tuticorin)",
+      "type": "port",
+      "is_primary": false,
+      "share_of_volume": 0.25,
+      "capacity_utilization": 0.62,
+      "availability": 0.94
+    },
+    {
+      "id": "factory_coimbatore",
+      "name": "Industrial Pump & Motor Works (Coimbatore)",
+      "type": "factory",
+      "capacity_utilization": 0.84,
+      "inventory_days": 24.0,
+      "safety_stock_days": 8.0,
+      "importance_weight": 0.91
+    },
+    {
+      "id": "wh_coimbatore",
+      "name": "Central Spares & Sub-Assembly Yard",
+      "type": "warehouse",
+      "capacity_utilization": 0.76,
+      "inventory_days": 28.0,
+      "safety_stock_days": 9.0
+    },
+    {
+      "id": "dc_infra_projects",
+      "name": "Infrastructure & EPC Project Sites Hub",
+      "type": "distribution_center",
+      "capacity_utilization": 0.72
+    }
+  ],
+  "edges": [
+    {
+      "id": "e_salem_cbe",
+      "source": "sup_specialty_steel",
+      "target": "factory_coimbatore",
+      "distance_km": 165,
+      "transit_time_days": 0.5,
+      "transport_cost_per_unit": 22.0,
+      "mode": "Road",
+      "is_primary": true
+    },
+    {
+      "id": "e_hosur_cbe",
+      "source": "sup_copper_wiring",
+      "target": "factory_coimbatore",
+      "distance_km": 340,
+      "transit_time_days": 1.0,
+      "transport_cost_per_unit": 38.0,
+      "mode": "Road",
+      "is_alternate": true
+    },
+    {
+      "id": "e_cochin_cbe",
+      "source": "port_cochin",
+      "target": "factory_coimbatore",
+      "distance_km": 190,
+      "transit_time_days": 0.7,
+      "transport_cost_per_unit": 28.0,
+      "mode": "Road",
+      "is_primary": true
+    },
+    {
+      "id": "e_tuti_cbe",
+      "source": "port_tuticorin",
+      "target": "factory_coimbatore",
+      "distance_km": 360,
+      "transit_time_days": 1.1,
+      "transport_cost_per_unit": 42.0,
+      "mode": "Road",
+      "is_alternate": true
+    },
+    {
+      "id": "e_cbe_wh",
+      "source": "factory_coimbatore",
+      "target": "wh_coimbatore",
+      "distance_km": 20,
+      "transit_time_days": 0.1,
+      "transport_cost_per_unit": 6.0,
+      "mode": "Road",
+      "is_primary": true
+    },
+    {
+      "id": "e_wh_infra",
+      "source": "wh_coimbatore",
+      "target": "dc_infra_projects",
+      "distance_km": 600,
+      "transit_time_days": 1.8,
+      "transport_cost_per_unit": 70.0,
+      "mode": "Road",
+      "is_primary": true
+    }
+  ]
+}

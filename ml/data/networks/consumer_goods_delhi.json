@@ -1,0 +1,130 @@
+{
+  "id": "consumer_goods_delhi",
+  "name": "Representative / Demonstration Supply Network: Personal Care & Home Essentials (Delhi NCR)",
+  "industry": "Consumer Goods",
+  "region": "Northern India Logistics Arc",
+  "network_depth": 5,
+  "nodes": [
+    {
+      "id": "sup_paper_rudrapur",
+      "name": "Packaging & Carton Mills (Rudrapur)",
+      "type": "supplier",
+      "is_primary": true,
+      "share_of_supply": 0.65,
+      "reliability": 0.94,
+      "availability": 0.95
+    },
+    {
+      "id": "sup_chem_baddi",
+      "name": "Surfactant & Fragrance Base (Baddi HP)",
+      "type": "supplier",
+      "is_primary": false,
+      "share_of_supply": 0.35,
+      "reliability": 0.91,
+      "availability": 0.93
+    },
+    {
+      "id": "port_icd_tughlakabad",
+      "name": "ICD Tughlakabad Inland Rail Terminal",
+      "type": "port",
+      "is_primary": true,
+      "share_of_volume": 0.85,
+      "capacity_utilization": 0.82,
+      "availability": 0.89
+    },
+    {
+      "id": "port_icd_dadri",
+      "name": "ICD Dadri (Western DFC Terminal)",
+      "type": "port",
+      "is_primary": false,
+      "share_of_volume": 0.15,
+      "capacity_utilization": 0.62,
+      "availability": 0.94
+    },
+    {
+      "id": "factory_haridwar",
+      "name": "Integrated FMCG Manufacturing Complex (Haridwar)",
+      "type": "factory",
+      "capacity_utilization": 0.86,
+      "inventory_days": 16.0,
+      "safety_stock_days": 5.5,
+      "importance_weight": 0.91
+    },
+    {
+      "id": "wh_manesar",
+      "name": "Manesar Mega Distribution Warehouse",
+      "type": "warehouse",
+      "capacity_utilization": 0.78,
+      "inventory_days": 18.0,
+      "safety_stock_days": 6.5
+    },
+    {
+      "id": "dc_north_retail",
+      "name": "North India Kirana & Retail Network",
+      "type": "distribution_center",
+      "capacity_utilization": 0.75
+    }
+  ],
+  "edges": [
+    {
+      "id": "e_rudra_hari",
+      "source": "sup_paper_rudrapur",
+      "target": "factory_haridwar",
+      "distance_km": 190,
+      "transit_time_days": 0.6,
+      "transport_cost_per_unit": 20.0,
+      "mode": "Road",
+      "is_primary": true
+    },
+    {
+      "id": "e_baddi_hari",
+      "source": "sup_chem_baddi",
+      "target": "factory_haridwar",
+      "distance_km": 210,
+      "transit_time_days": 0.7,
+      "transport_cost_per_unit": 24.0,
+      "mode": "Road",
+      "is_alternate": true
+    },
+    {
+      "id": "e_icd_tkd_hari",
+      "source": "port_icd_tughlakabad",
+      "target": "factory_haridwar",
+      "distance_km": 220,
+      "transit_time_days": 0.8,
+      "transport_cost_per_unit": 26.0,
+      "mode": "Road",
+      "is_primary": true
+    },
+    {
+      "id": "e_icd_dadri_hari",
+      "source": "port_icd_dadri",
+      "target": "factory_haridwar",
+      "distance_km": 205,
+      "transit_time_days": 0.7,
+      "transport_cost_per_unit": 25.0,
+      "mode": "Road",
+      "is_alternate": true
+    },
+    {
+      "id": "e_hari_manesar",
+      "source": "factory_haridwar",
+      "target": "wh_manesar",
+      "distance_km": 250,
+      "transit_time_days": 0.8,
+      "transport_cost_per_unit": 28.0,
+      "mode": "Road",
+      "is_primary": true
+    },
+    {
+      "id": "e_manesar_retail",
+      "source": "wh_manesar",
+      "target": "dc_north_retail",
+      "distance_km": 280,
+      "transit_time_days": 0.9,
+      "transport_cost_per_unit": 32.0,
+      "mode": "Road",
+      "is_primary": true
+    }
+  ]
+}

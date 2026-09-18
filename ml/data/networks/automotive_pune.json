@@ -1,0 +1,130 @@
+{
+  "id": "automotive_pune",
+  "name": "Representative / Demonstration Supply Network: Commercial Vehicle & Auto Components (Pune)",
+  "industry": "Automotive",
+  "region": "Maharashtra Auto Corridor",
+  "network_depth": 5,
+  "nodes": [
+    {
+      "id": "sup_chassis_pune",
+      "name": "Chassis & Frame Manufacturer (Aurangabad)",
+      "type": "supplier",
+      "is_primary": true,
+      "share_of_supply": 0.65,
+      "reliability": 0.94,
+      "availability": 0.93
+    },
+    {
+      "id": "sup_castings_kolhapur",
+      "name": "Foundry & Castings Supplier (Kolhapur)",
+      "type": "supplier",
+      "is_primary": false,
+      "share_of_supply": 0.35,
+      "reliability": 0.9,
+      "availability": 0.91
+    },
+    {
+      "id": "port_jnpt_pune",
+      "name": "JNPT Navi Mumbai Container Port",
+      "type": "port",
+      "is_primary": true,
+      "share_of_volume": 0.85,
+      "capacity_utilization": 0.8,
+      "availability": 0.91
+    },
+    {
+      "id": "port_mumbai_old",
+      "name": "Mumbai Port Trust (Alternative)",
+      "type": "port",
+      "is_primary": false,
+      "share_of_volume": 0.15,
+      "capacity_utilization": 0.65,
+      "availability": 0.88
+    },
+    {
+      "id": "factory_chakan",
+      "name": "Chakan Auto Assembly Plant (Pune)",
+      "type": "factory",
+      "capacity_utilization": 0.86,
+      "inventory_days": 14.0,
+      "safety_stock_days": 4.5,
+      "importance_weight": 0.93
+    },
+    {
+      "id": "wh_talegaon",
+      "name": "Talegaon Logistics Park",
+      "type": "warehouse",
+      "capacity_utilization": 0.75,
+      "inventory_days": 16.0,
+      "safety_stock_days": 5.0
+    },
+    {
+      "id": "dc_west_dealers",
+      "name": "Western India Dealership Hub",
+      "type": "distribution_center",
+      "capacity_utilization": 0.72
+    }
+  ],
+  "edges": [
+    {
+      "id": "e_aur_pune",
+      "source": "sup_chassis_pune",
+      "target": "factory_chakan",
+      "distance_km": 230,
+      "transit_time_days": 0.8,
+      "transport_cost_per_unit": 35.0,
+      "mode": "Road",
+      "is_primary": true
+    },
+    {
+      "id": "e_kol_pune",
+      "source": "sup_castings_kolhapur",
+      "target": "factory_chakan",
+      "distance_km": 240,
+      "transit_time_days": 0.8,
+      "transport_cost_per_unit": 32.0,
+      "mode": "Road",
+      "is_alternate": true
+    },
+    {
+      "id": "e_jnpt_chakan",
+      "source": "port_jnpt_pune",
+      "target": "factory_chakan",
+      "distance_km": 135,
+      "transit_time_days": 0.6,
+      "transport_cost_per_unit": 20.0,
+      "mode": "Road",
+      "is_primary": true
+    },
+    {
+      "id": "e_mbpt_chakan",
+      "source": "port_mumbai_old",
+      "target": "factory_chakan",
+      "distance_km": 160,
+      "transit_time_days": 0.8,
+      "transport_cost_per_unit": 25.0,
+      "mode": "Road",
+      "is_alternate": true
+    },
+    {
+      "id": "e_chakan_tale",
+      "source": "factory_chakan",
+      "target": "wh_talegaon",
+      "distance_km": 35,
+      "transit_time_days": 0.1,
+      "transport_cost_per_unit": 6.0,
+      "mode": "Road",
+      "is_primary": true
+    },
+    {
+      "id": "e_tale_west",
+      "source": "wh_talegaon",
+      "target": "dc_west_dealers",
+      "distance_km": 320,
+      "transit_time_days": 0.9,
+      "transport_cost_per_unit": 38.0,
+      "mode": "Road",
+      "is_primary": true
+    }
+  ]
+}

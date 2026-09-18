@@ -1,0 +1,39 @@
+{
+  "port_alternatives": {
+    "JNPT (Navi Mumbai)": {
+      "alternate": "Hazira / Pipavav (Gujarat)",
+      "delay_savings_days": "4 - 7 days",
+      "rail_corridor": "Western Dedicated Freight Corridor (WDFC)"
+    },
+    "Mundra (Gujarat)": {
+      "alternate": "Kandla (Deendayal Port)",
+      "delay_savings_days": "3 - 5 days",
+      "rail_corridor": "Western Dedicated Freight Corridor (WDFC)"
+    },
+    "Chennai Port": {
+      "alternate": "Kattupalli / Ennore Port",
+      "delay_savings_days": "3 - 6 days",
+      "rail_corridor": "Chennai-Bengaluru Industrial Corridor"
+    },
+    "Kolkata & Haldia": {
+      "alternate": "Paradip Port (Odisha)",
+      "delay_savings_days": "5 - 8 days",
+      "rail_corridor": "Eastern Dedicated Freight Corridor (EDFC)"
+    },
+    "Visakhapatnam": {
+      "alternate": "Krishnapatnam Port",
+      "delay_savings_days": "3 - 5 days",
+      "rail_corridor": "Visakhapatnam-Chennai Industrial Corridor"
+    },
+    "Cochin Port": {
+      "alternate": "Tuticorin (V.O. Chidambaranar Port)",
+      "delay_savings_days": "2 - 4 days",
+      "rail_corridor": "Southern Coastal Railway"
+    },
+    "Hazira (Surat)": {
+      "alternate": "Dahej Port",
+      "delay_savings_days": "2 - 4 days",
+      "rail_corridor": "Delhi-Mumbai Industrial Corridor"
+    }
+  }
+}

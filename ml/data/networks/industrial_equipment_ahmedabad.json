@@ -1,0 +1,130 @@
+{
+  "id": "industrial_equipment_ahmedabad",
+  "name": "Representative / Demonstration Supply Network: Heavy Machinery & Valves (Ahmedabad & Sanand)",
+  "industry": "Industrial Equipment",
+  "region": "Gujarat Heavy Engineering Hub",
+  "network_depth": 5,
+  "nodes": [
+    {
+      "id": "sup_castings_rajkot",
+      "name": "Heavy Castings & Foundry Cluster (Rajkot)",
+      "type": "supplier",
+      "is_primary": true,
+      "share_of_supply": 0.6,
+      "reliability": 0.94,
+      "availability": 0.95
+    },
+    {
+      "id": "sup_hydraulics_pune",
+      "name": "High-Pressure Hydraulic Valves (Pune)",
+      "type": "supplier",
+      "is_primary": false,
+      "share_of_supply": 0.4,
+      "reliability": 0.92,
+      "availability": 0.92
+    },
+    {
+      "id": "port_mundra_ind",
+      "name": "Mundra Port Engineering Terminal",
+      "type": "port",
+      "is_primary": true,
+      "share_of_volume": 0.75,
+      "capacity_utilization": 0.72,
+      "availability": 0.95
+    },
+    {
+      "id": "port_hazira_ind",
+      "name": "Hazira Heavy Bulk Terminal (Surat)",
+      "type": "port",
+      "is_primary": false,
+      "share_of_volume": 0.25,
+      "capacity_utilization": 0.58,
+      "availability": 0.96
+    },
+    {
+      "id": "factory_vatva",
+      "name": "Heavy Machinery & Turbine Fabrication (Vatva)",
+      "type": "factory",
+      "capacity_utilization": 0.85,
+      "inventory_days": 26.0,
+      "safety_stock_days": 8.5,
+      "importance_weight": 0.93
+    },
+    {
+      "id": "wh_aslali",
+      "name": "Aslali Central Machinery Depot",
+      "type": "warehouse",
+      "capacity_utilization": 0.78,
+      "inventory_days": 30.0,
+      "safety_stock_days": 10.0
+    },
+    {
+      "id": "dc_power_mining",
+      "name": "Power & Mining Industrial Dispatch",
+      "type": "distribution_center",
+      "capacity_utilization": 0.7
+    }
+  ],
+  "edges": [
+    {
+      "id": "e_raj_vatva",
+      "source": "sup_castings_rajkot",
+      "target": "factory_vatva",
+      "distance_km": 215,
+      "transit_time_days": 0.7,
+      "transport_cost_per_unit": 28.0,
+      "mode": "Road",
+      "is_primary": true
+    },
+    {
+      "id": "e_pune_vatva",
+      "source": "sup_hydraulics_pune",
+      "target": "factory_vatva",
+      "distance_km": 640,
+      "transit_time_days": 1.9,
+      "transport_cost_per_unit": 68.0,
+      "mode": "Road",
+      "is_alternate": true
+    },
+    {
+      "id": "e_mundra_vatva",
+      "source": "port_mundra_ind",
+      "target": "factory_vatva",
+      "distance_km": 370,
+      "transit_time_days": 1.1,
+      "transport_cost_per_unit": 38.0,
+      "mode": "Road",
+      "is_primary": true
+    },
+    {
+      "id": "e_hazira_vatva",
+      "source": "port_hazira_ind",
+      "target": "factory_vatva",
+      "distance_km": 270,
+      "transit_time_days": 0.8,
+      "transport_cost_per_unit": 32.0,
+      "mode": "Road",
+      "is_alternate": true
+    },
+    {
+      "id": "e_vatva_aslali",
+      "source": "factory_vatva",
+      "target": "wh_aslali",
+      "distance_km": 15,
+      "transit_time_days": 0.1,
+      "transport_cost_per_unit": 6.0,
+      "mode": "Road",
+      "is_primary": true
+    },
+    {
+      "id": "e_aslali_power",
+      "source": "wh_aslali",
+      "target": "dc_power_mining",
+      "distance_km": 680,
+      "transit_time_days": 2.0,
+      "transport_cost_per_unit": 85.0,
+      "mode": "Road",
+      "is_primary": true
+    }
+  ]
+}

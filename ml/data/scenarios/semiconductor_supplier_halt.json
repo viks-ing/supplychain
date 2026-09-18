@@ -1,0 +1,15 @@
+{
+  "id": "semiconductor_supplier_halt",
+  "name": "Global Critical Component Supplier Outage",
+  "shock_type": "supplier",
+  "shock_severity": 0.85,
+  "shock_duration_days": 35.0,
+  "congestion_increase_pct": 20.0,
+  "external_conditions": {
+    "usd_inr": 85.0,
+    "crude_price": 84.0,
+    "commodity_price": 115.0,
+    "inflation_rate": 6.2,
+    "freight_index": 170.0
+  }
+}

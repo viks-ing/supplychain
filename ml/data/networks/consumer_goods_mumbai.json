@@ -1,0 +1,130 @@
+{
+  "id": "consumer_goods_mumbai",
+  "name": "Representative / Demonstration Supply Network: FMCG Packaged Goods (Bhiwandi & Mumbai)",
+  "industry": "Consumer Goods",
+  "region": "MMR & Western India",
+  "network_depth": 5,
+  "nodes": [
+    {
+      "id": "sup_packaging_vapi",
+      "name": "Corrugated Packaging Supplier (Vapi)",
+      "type": "supplier",
+      "is_primary": true,
+      "share_of_supply": 0.6,
+      "reliability": 0.93,
+      "availability": 0.94
+    },
+    {
+      "id": "sup_oils_kandla",
+      "name": "Edible Oils & Fragrances (Kandla)",
+      "type": "supplier",
+      "is_primary": false,
+      "share_of_supply": 0.4,
+      "reliability": 0.9,
+      "availability": 0.92
+    },
+    {
+      "id": "port_jnpt_fmcg",
+      "name": "JNPT Container Terminal",
+      "type": "port",
+      "is_primary": true,
+      "share_of_volume": 0.8,
+      "capacity_utilization": 0.78,
+      "availability": 0.92
+    },
+    {
+      "id": "port_hazira_fmcg",
+      "name": "Hazira Port (Surat Alternate)",
+      "type": "port",
+      "is_primary": false,
+      "share_of_volume": 0.2,
+      "capacity_utilization": 0.6,
+      "availability": 0.95
+    },
+    {
+      "id": "factory_bhiwandi",
+      "name": "Mega FMCG Processing Plant (Bhiwandi)",
+      "type": "factory",
+      "capacity_utilization": 0.85,
+      "inventory_days": 15.0,
+      "safety_stock_days": 5.0,
+      "importance_weight": 0.9
+    },
+    {
+      "id": "wh_panvel",
+      "name": "Panvel High-Speed Regional Fulfillment Center",
+      "type": "warehouse",
+      "capacity_utilization": 0.8,
+      "inventory_days": 18.0,
+      "safety_stock_days": 6.0
+    },
+    {
+      "id": "dc_modern_retail",
+      "name": "Modern Trade & Supermarket Distribution Hub",
+      "type": "distribution_center",
+      "capacity_utilization": 0.78
+    }
+  ],
+  "edges": [
+    {
+      "id": "e_vapi_bhiwandi",
+      "source": "sup_packaging_vapi",
+      "target": "factory_bhiwandi",
+      "distance_km": 145,
+      "transit_time_days": 0.5,
+      "transport_cost_per_unit": 18.0,
+      "mode": "Road",
+      "is_primary": true
+    },
+    {
+      "id": "e_kandla_bhiwandi",
+      "source": "sup_oils_kandla",
+      "target": "factory_bhiwandi",
+      "distance_km": 780,
+      "transit_time_days": 2.2,
+      "transport_cost_per_unit": 46.0,
+      "mode": "Road",
+      "is_alternate": true
+    },
+    {
+      "id": "e_jnpt_bhiwandi",
+      "source": "port_jnpt_fmcg",
+      "target": "factory_bhiwandi",
+      "distance_km": 65,
+      "transit_time_days": 0.3,
+      "transport_cost_per_unit": 14.0,
+      "mode": "Road",
+      "is_primary": true
+    },
+    {
+      "id": "e_hazira_bhiwandi",
+      "source": "port_hazira_fmcg",
+      "target": "factory_bhiwandi",
+      "distance_km": 250,
+      "transit_time_days": 0.8,
+      "transport_cost_per_unit": 28.0,
+      "mode": "Road",
+      "is_alternate": true
+    },
+    {
+      "id": "e_bhiwandi_panvel",
+      "source": "factory_bhiwandi",
+      "target": "wh_panvel",
+      "distance_km": 50,
+      "transit_time_days": 0.2,
+      "transport_cost_per_unit": 9.0,
+      "mode": "Road",
+      "is_primary": true
+    },
+    {
+      "id": "e_panvel_retail",
+      "source": "wh_panvel",
+      "target": "dc_modern_retail",
+      "distance_km": 300,
+      "transit_time_days": 0.8,
+      "transport_cost_per_unit": 32.0,
+      "mode": "Road",
+      "is_primary": true
+    }
+  ]
+}

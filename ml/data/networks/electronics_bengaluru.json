@@ -1,0 +1,140 @@
+{
+  "id": "electronics_bengaluru",
+  "name": "Representative / Demonstration Supply Network: Smart Hardware (Bengaluru)",
+  "industry": "Electronics",
+  "region": "Karnataka",
+  "network_depth": 5,
+  "nodes": [
+    {
+      "id": "sup_display_primary",
+      "name": "OLED Module Supplier (East Asia)",
+      "type": "supplier",
+      "is_primary": true,
+      "share_of_supply": 0.65,
+      "reliability": 0.95,
+      "availability": 0.94
+    },
+    {
+      "id": "sup_enclosure_alt",
+      "name": "Precision Metal Supplier (Hosur)",
+      "type": "supplier",
+      "is_primary": false,
+      "share_of_supply": 0.35,
+      "reliability": 0.91,
+      "availability": 0.96
+    },
+    {
+      "id": "port_chennai_blr",
+      "name": "Chennai Port",
+      "type": "port",
+      "is_primary": true,
+      "share_of_volume": 0.8,
+      "capacity_utilization": 0.82,
+      "availability": 0.9
+    },
+    {
+      "id": "port_mangalore",
+      "name": "New Mangalore Port (Alternative)",
+      "type": "port",
+      "is_primary": false,
+      "share_of_volume": 0.2,
+      "capacity_utilization": 0.5,
+      "availability": 0.96
+    },
+    {
+      "id": "factory_blr",
+      "name": "Electronics City Manufacturing Facility (Bengaluru)",
+      "type": "factory",
+      "capacity_utilization": 0.85,
+      "inventory_days": 16.0,
+      "safety_stock_days": 5.0,
+      "importance_weight": 0.92
+    },
+    {
+      "id": "wh_whitefield",
+      "name": "Whitefield Fulfilment Hub",
+      "type": "warehouse",
+      "capacity_utilization": 0.78,
+      "inventory_days": 20.0,
+      "safety_stock_days": 7.0
+    },
+    {
+      "id": "dc_pan_india",
+      "name": "National Air/Road Dispatch Center",
+      "type": "distribution_center",
+      "capacity_utilization": 0.8
+    }
+  ],
+  "edges": [
+    {
+      "id": "e_sea_chn_blr",
+      "source": "sup_display_primary",
+      "target": "port_chennai_blr",
+      "distance_km": 4100,
+      "transit_time_days": 11.0,
+      "transport_cost_per_unit": 42.0,
+      "mode": "Sea",
+      "is_primary": true
+    },
+    {
+      "id": "e_sea_mng_blr",
+      "source": "sup_display_primary",
+      "target": "port_mangalore",
+      "distance_km": 4800,
+      "transit_time_days": 14.0,
+      "transport_cost_per_unit": 49.0,
+      "mode": "Sea",
+      "is_alternate": true
+    },
+    {
+      "id": "e_hosur_blr",
+      "source": "sup_enclosure_alt",
+      "target": "factory_blr",
+      "distance_km": 40,
+      "transit_time_days": 0.2,
+      "transport_cost_per_unit": 8.0,
+      "mode": "Road",
+      "is_alternate": true
+    },
+    {
+      "id": "e_chn_fac_blr",
+      "source": "port_chennai_blr",
+      "target": "factory_blr",
+      "distance_km": 350,
+      "transit_time_days": 1.2,
+      "transport_cost_per_unit": 24.0,
+      "mode": "Road",
+      "is_primary": true
+    },
+    {
+      "id": "e_mng_fac_blr",
+      "source": "port_mangalore",
+      "target": "factory_blr",
+      "distance_km": 360,
+      "transit_time_days": 1.5,
+      "transport_cost_per_unit": 28.0,
+      "mode": "Road",
+      "is_alternate": true
+    },
+    {
+      "id": "e_blr_wh",
+      "source": "factory_blr",
+      "target": "wh_whitefield",
+      "distance_km": 30,
+      "transit_time_days": 0.1,
+      "transport_cost_per_unit": 5.0,
+      "mode": "Road",
+      "is_primary": true
+    },
+    {
+      "id": "e_wh_pan",
+      "source": "wh_whitefield",
+      "target": "dc_pan_india",
+      "distance_km": 25,
+      "transit_time_days": 0.1,
+      "transport_cost_per_unit": 4.0,
+      "mode": "Road",
+      "is_primary": true
+    }
+  ]
+}

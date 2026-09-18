@@ -1,0 +1,15 @@
+{
+  "id": "port_congestion_monsoon",
+  "name": "Monsoon Port Congestion & Berth Delay",
+  "shock_type": "port",
+  "shock_severity": 0.70,
+  "shock_duration_days": 21.0,
+  "congestion_increase_pct": 75.0,
+  "external_conditions": {
+    "usd_inr": 84.5,
+    "crude_price": 88.0,
+    "commodity_price": 105.0,
+    "inflation_rate": 5.6,
+    "freight_index": 145.0
+  }
+}

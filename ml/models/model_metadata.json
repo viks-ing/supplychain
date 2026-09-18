@@ -1,0 +1,127 @@
+{
+  "model_version": "vyuha-xgb-v2",
+  "training_samples": 3480,
+  "validation_samples": 720,
+  "test_samples": 840,
+  "features": [
+    "supplier_count",
+    "alternative_supplier_count",
+    "port_count",
+    "alternative_port_count",
+    "factory_count",
+    "warehouse_count",
+    "distribution_center_count",
+    "network_depth",
+    "network_edge_count",
+    "network_node_count",
+    "supplier_concentration",
+    "port_dependency",
+    "single_point_of_failure",
+    "average_route_distance_km",
+    "critical_route_distance_km",
+    "alternate_route_distance_km",
+    "average_supplier_reliability",
+    "minimum_supplier_reliability",
+    "average_supplier_availability",
+    "average_capacity_utilization",
+    "maximum_capacity_utilization",
+    "factory_capacity_utilization",
+    "warehouse_capacity_utilization",
+    "inventory_days",
+    "safety_stock_days",
+    "shock_type_encoded",
+    "shock_severity",
+    "shock_duration_days",
+    "affected_node_importance",
+    "affected_capacity_change_pct",
+    "affected_availability_change_pct",
+    "affected_congestion_change_pct",
+    "affected_supply_percent",
+    "affected_production_percent",
+    "additional_transit_days",
+    "additional_transport_cost_pct",
+    "alternate_route_available",
+    "alternate_route_count",
+    "alternate_route_delay_days",
+    "alternate_route_cost_increase_pct",
+    "rerouted_supply_percent",
+    "usd_inr",
+    "crude_price",
+    "commodity_price",
+    "inflation_rate",
+    "freight_index"
+  ],
+  "targets": [
+    "cost_impact_pct",
+    "delay_days",
+    "risk_score"
+  ],
+  "algorithm": "XGBoost",
+  "training_data_type": "representative network simulations using public baseline indicators",
+  "geographic_scope": "India",
+  "benchmark_metrics": {
+    "cost_impact_pct": {
+      "linear_regression": {
+        "mae": 1.589,
+        "rmse": 2.227,
+        "r2": 0.9616,
+        "mape": 26.46
+      },
+      "random_forest": {
+        "mae": 0.96,
+        "rmse": 1.296,
+        "r2": 0.987,
+        "mape": 13.01
+      },
+      "xgboost": {
+        "mae": 0.673,
+        "rmse": 0.904,
+        "r2": 0.9937,
+        "mape": 10.4
+      },
+      "best_model": "xgboost"
+    },
+    "delay_days": {
+      "linear_regression": {
+        "mae": 0.533,
+        "rmse": 0.706,
+        "r2": 0.9843,
+        "mape": 26.89
+      },
+      "random_forest": {
+        "mae": 0.332,
+        "rmse": 0.472,
+        "r2": 0.993,
+        "mape": 19.67
+      },
+      "xgboost": {
+        "mae": 0.303,
+        "rmse": 0.413,
+        "r2": 0.9946,
+        "mape": 18.58
+      },
+      "best_model": "xgboost"
+    },
+    "risk_score": {
+      "linear_regression": {
+        "mae": 2.304,
+        "rmse": 3.299,
+        "r2": 0.9686,
+        "mape": 17.9
+      },
+      "random_forest": {
+        "mae": 2.061,
+        "rmse": 2.8,
+        "r2": 0.9774,
+        "mape": 14.6
+      },
+      "xgboost": {
+        "mae": 1.624,
+        "rmse": 2.157,
+        "r2": 0.9866,
+        "mape": 12.01
+      },
+      "best_model": "xgboost"
+    }
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "node_attributes": {
+    "capacity": {
+      "type": "float",
+      "unit": "units_per_day",
+      "default": 1000.0,
+      "description": "Maximum rated operational throughput or holding capacity."
+    },
+    "capacity_utilization": {
+      "type": "float",
+      "unit": "percentage_0_to_1",
+      "default": 0.75,
+      "description": "Baseline operational utilization level (0.0 to 1.0)."
+    },
+    "reliability": {
+      "type": "float",
+      "unit": "score_0_to_1",
+      "default": 0.88,
+      "description": "Historical on-time or fulfillment probability (0.0 to 1.0)."
+    },
+    "availability": {
+      "type": "float",
+      "unit": "score_0_to_1",
+      "default": 0.90,
+      "description": "Operational uptime percentage (0.0 to 1.0)."
+    },
+    "inventory_days": {
+      "type": "float",
+      "unit": "days",
+      "default": 20.0,
+      "description": "Available stock runway or buffer measured in days of standard consumption."
+    },
+    "safety_stock_days": {
+      "type": "float",
+      "unit": "days",
+      "default": 7.0,
+      "description": "Protected reserve buffer maintained for emergency stockouts."
+    },
+    "congestion": {
+      "type": "float",
+      "unit": "percentage_0_to_100",
+      "default": 15.0,
+      "description": "Current congestion or bottleneck severity percentage at this node."
+    },
+    "share_of_supply": {
+      "type": "float",
+      "unit": "fraction_0_to_1",
+      "default": 0.5,
+      "description": "Proportion of total network input volume sourced through this node."
+    },
+    "share_of_volume": {
+      "type": "float",
+      "unit": "fraction_0_to_1",
+      "default": 0.5,
+      "description": "Proportion of total network cargo flowing through this transit node."
+    },
+    "importance_weight": {
+      "type": "float",
+      "unit": "weight_0_to_1",
+      "default": 0.6,
+      "description": "Strategic criticality score of this node to the entire network."
+    }
+  },
+  "edge_attributes": {
+    "distance_km": {
+      "type": "float",
+      "unit": "kilometers",
+      "default": 500.0,
+      "description": "Physical transit route distance."
+    },
+    "transit_time_days": {
+      "type": "float",
+      "unit": "days",
+      "default": 2.5,
+      "description": "Baseline transit duration under normal conditions."
+    },
+    "transport_cost_per_unit": {
+      "type": "float",
+      "unit": "currency_units",
+      "default": 25.0,
+      "description": "Standard freight cost per unit along this corridor."
+    },
+    "congestion": {
+      "type": "float",
+      "unit": "percentage_0_to_100",
+      "default": 10.0,
+      "description": "Transit corridor congestion or choke-point severity percentage."
+    },
+    "reliability": {
+      "type": "float",
+      "unit": "score_0_to_1",
+      "default": 0.92,
+      "description": "Corridor operational schedule adherence."
+    }
+  }
+}

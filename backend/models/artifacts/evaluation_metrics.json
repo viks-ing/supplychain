@@ -1,0 +1,206 @@
+{
+  "dataset": "DataCoSupplyChainDataset.csv",
+  "total_records": 180519,
+  "train_samples": 144415,
+  "test_samples": 36104,
+  "num_features": 33,
+  "features": [
+    "Days for shipment (scheduled)",
+    "Benefit per order",
+    "Sales per customer",
+    "Latitude",
+    "Longitude",
+    "Order Item Discount",
+    "Order Item Discount Rate",
+    "Order Item Product Price",
+    "Order Item Profit Ratio",
+    "Order Item Quantity",
+    "Sales",
+    "Order Item Total",
+    "Product Price",
+    "order_date__dateorders_month",
+    "order_date__dateorders_dayofweek",
+    "order_date__dateorders_hour",
+    "shipping_date__dateorders_month",
+    "shipping_date__dateorders_dayofweek",
+    "shipping_date__dateorders_hour",
+    "Type",
+    "Category Name",
+    "Customer City",
+    "Customer Country",
+    "Customer Segment",
+    "Customer State",
+    "Department Name",
+    "Market",
+    "Order City",
+    "Order Country",
+    "Order Region",
+    "Order State",
+    "Product Name",
+    "Shipping Mode"
+  ],
+  "targets": {
+    "Late_delivery_risk": {
+      "task": "classification",
+      "accuracy": 0.9749,
+      "precision": 0.9562,
+      "recall": 0.9999,
+      "f1_score": 0.9776,
+      "roc_auc": 0.9964,
+      "confusion_matrix": [
+        [
+          15402,
+          906
+        ],
+        [
+          1,
+          19795
+        ]
+      ]
+    },
+    "delay_days": {
+      "task": "regression",
+      "mae": 0.026,
+      "rmse": 0.0455,
+      "r2": 0.9991,
+      "mape": 1.47,
+      "median_absolute_error": 0.0135
+    },
+    "Order Profit Per Order": {
+      "task": "regression",
+      "mae": 0.75,
+      "rmse": 2.813,
+      "r2": 0.9993,
+      "mape": 1.72,
+      "median_absolute_error": 0.2841
+    }
+  },
+  "feature_importances": {
+    "Late_delivery_risk": [
+      {
+        "feature": "Shipping Mode",
+        "importance": 0.2095
+      },
+      {
+        "feature": "order_date__dateorders_dayofweek",
+        "importance": 0.2076
+      },
+      {
+        "feature": "Days for shipment (scheduled)",
+        "importance": 0.1924
+      },
+      {
+        "feature": "shipping_date__dateorders_dayofweek",
+        "importance": 0.1631
+      },
+      {
+        "feature": "order_date__dateorders_hour",
+        "importance": 0.0668
+      },
+      {
+        "feature": "shipping_date__dateorders_hour",
+        "importance": 0.0336
+      },
+      {
+        "feature": "Type",
+        "importance": 0.0321
+      },
+      {
+        "feature": "order_date__dateorders_month",
+        "importance": 0.0062
+      },
+      {
+        "feature": "Order Region",
+        "importance": 0.0052
+      },
+      {
+        "feature": "Latitude",
+        "importance": 0.005
+      }
+    ],
+    "delay_days": [
+      {
+        "feature": "Shipping Mode",
+        "importance": 0.2917
+      },
+      {
+        "feature": "shipping_date__dateorders_dayofweek",
+        "importance": 0.2573
+      },
+      {
+        "feature": "Days for shipment (scheduled)",
+        "importance": 0.1905
+      },
+      {
+        "feature": "order_date__dateorders_dayofweek",
+        "importance": 0.1896
+      },
+      {
+        "feature": "order_date__dateorders_hour",
+        "importance": 0.017
+      },
+      {
+        "feature": "shipping_date__dateorders_hour",
+        "importance": 0.0118
+      },
+      {
+        "feature": "Customer Segment",
+        "importance": 0.0035
+      },
+      {
+        "feature": "Sales",
+        "importance": 0.0034
+      },
+      {
+        "feature": "shipping_date__dateorders_month",
+        "importance": 0.003
+      },
+      {
+        "feature": "Department Name",
+        "importance": 0.0027
+      }
+    ],
+    "Order Profit Per Order": [
+      {
+        "feature": "Benefit per order",
+        "importance": 0.6154
+      },
+      {
+        "feature": "Order Item Product Price",
+        "importance": 0.1711
+      },
+      {
+        "feature": "Order Item Profit Ratio",
+        "importance": 0.0921
+      },
+      {
+        "feature": "Sales",
+        "importance": 0.0615
+      },
+      {
+        "feature": "Sales per customer",
+        "importance": 0.0274
+      },
+      {
+        "feature": "Order Item Total",
+        "importance": 0.0167
+      },
+      {
+        "feature": "Latitude",
+        "importance": 0.0036
+      },
+      {
+        "feature": "Longitude",
+        "importance": 0.0033
+      },
+      {
+        "feature": "Order Item Discount Rate",
+        "importance": 0.0021
+      },
+      {
+        "feature": "shipping_date__dateorders_dayofweek",
+        "importance": 0.0012
+      }
+    ]
+  }
+}

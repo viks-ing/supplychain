@@ -1,0 +1,140 @@
+{
+  "id": "pharma_hyderabad",
+  "name": "Representative / Demonstration Supply Network: Formulations & Bulk Drugs (Genome Valley Hyderabad)",
+  "industry": "Pharmaceuticals",
+  "region": "Telangana Pharma Cluster",
+  "network_depth": 5,
+  "nodes": [
+    {
+      "id": "sup_api_global",
+      "name": "Global Active Pharmaceutical Ingredient (API) Supplier",
+      "type": "supplier",
+      "is_primary": true,
+      "share_of_supply": 0.7,
+      "reliability": 0.91,
+      "availability": 0.92
+    },
+    {
+      "id": "sup_excipient_local",
+      "name": "Domestic Excipients & Solvents Supplier (Vizag)",
+      "type": "supplier",
+      "is_primary": false,
+      "share_of_supply": 0.3,
+      "reliability": 0.89,
+      "availability": 0.95
+    },
+    {
+      "id": "port_jnpt_pharma",
+      "name": "JNPT Navi Mumbai Sea Gateway",
+      "type": "port",
+      "is_primary": true,
+      "share_of_volume": 0.7,
+      "capacity_utilization": 0.82,
+      "availability": 0.9
+    },
+    {
+      "id": "port_vizag_pharma",
+      "name": "Visakhapatnam Port (Alternative)",
+      "type": "port",
+      "is_primary": false,
+      "share_of_volume": 0.3,
+      "capacity_utilization": 0.6,
+      "availability": 0.94
+    },
+    {
+      "id": "factory_genome_valley",
+      "name": "Genome Valley Formulations Facility (Hyderabad)",
+      "type": "factory",
+      "capacity_utilization": 0.84,
+      "inventory_days": 28.0,
+      "safety_stock_days": 10.0,
+      "importance_weight": 0.94
+    },
+    {
+      "id": "wh_cold_chain_hyd",
+      "name": "Temperature-Controlled Central Cold Storage (Shamshabad)",
+      "type": "warehouse",
+      "capacity_utilization": 0.76,
+      "inventory_days": 35.0,
+      "safety_stock_days": 12.0
+    },
+    {
+      "id": "dc_hospital_supply",
+      "name": "Hospitals & Institutional Pharmacy Network",
+      "type": "distribution_center",
+      "capacity_utilization": 0.7
+    }
+  ],
+  "edges": [
+    {
+      "id": "e_sea_jnpt_pharma",
+      "source": "sup_api_global",
+      "target": "port_jnpt_pharma",
+      "distance_km": 5400,
+      "transit_time_days": 15.0,
+      "transport_cost_per_unit": 60.0,
+      "mode": "Sea",
+      "is_primary": true
+    },
+    {
+      "id": "e_sea_vizag_pharma",
+      "source": "sup_api_global",
+      "target": "port_vizag_pharma",
+      "distance_km": 4900,
+      "transit_time_days": 13.5,
+      "transport_cost_per_unit": 55.0,
+      "mode": "Sea",
+      "is_alternate": true
+    },
+    {
+      "id": "e_vizag_sup_hyd",
+      "source": "sup_excipient_local",
+      "target": "factory_genome_valley",
+      "distance_km": 620,
+      "transit_time_days": 1.8,
+      "transport_cost_per_unit": 28.0,
+      "mode": "Road",
+      "is_alternate": true
+    },
+    {
+      "id": "e_jnpt_genome",
+      "source": "port_jnpt_pharma",
+      "target": "factory_genome_valley",
+      "distance_km": 720,
+      "transit_time_days": 2.2,
+      "transport_cost_per_unit": 42.0,
+      "mode": "Road",
+      "is_primary": true
+    },
+    {
+      "id": "e_vizag_genome",
+      "source": "port_vizag_pharma",
+      "target": "factory_genome_valley",
+      "distance_km": 640,
+      "transit_time_days": 1.9,
+      "transport_cost_per_unit": 38.0,
+      "mode": "Road",
+      "is_alternate": true
+    },
+    {
+      "id": "e_genome_cold",
+      "source": "factory_genome_valley",
+      "target": "wh_cold_chain_hyd",
+      "distance_km": 60,
+      "transit_time_days": 0.2,
+      "transport_cost_per_unit": 12.0,
+      "mode": "Road",
+      "is_primary": true
+    },
+    {
+      "id": "e_cold_hospitals",
+      "source": "wh_cold_chain_hyd",
+      "target": "dc_hospital_supply",
+      "distance_km": 350,
+      "transit_time_days": 1.0,
+      "transport_cost_per_unit": 30.0,
+      "mode": "Road",
+      "is_primary": true
+    }
+  ]
+}

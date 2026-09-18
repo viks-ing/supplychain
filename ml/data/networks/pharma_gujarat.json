@@ -1,0 +1,130 @@
+{
+  "id": "pharma_gujarat",
+  "name": "Representative / Demonstration Supply Network: Sterile Injectables (Vadodara & Ahmedabad)",
+  "industry": "Pharmaceuticals",
+  "region": "Gujarat Pharma Corridor",
+  "network_depth": 5,
+  "nodes": [
+    {
+      "id": "sup_vial_primary",
+      "name": "Specialty Glass Vial & Polymer Supplier (Mumbai)",
+      "type": "supplier",
+      "is_primary": true,
+      "share_of_supply": 0.65,
+      "reliability": 0.95,
+      "availability": 0.94
+    },
+    {
+      "id": "sup_api_chem",
+      "name": "Chemical Intermediate Supplier (Ankleshwar)",
+      "type": "supplier",
+      "is_primary": false,
+      "share_of_supply": 0.35,
+      "reliability": 0.92,
+      "availability": 0.96
+    },
+    {
+      "id": "port_mundra_pharma",
+      "name": "Mundra Port (Gujarat)",
+      "type": "port",
+      "is_primary": true,
+      "share_of_volume": 0.8,
+      "capacity_utilization": 0.74,
+      "availability": 0.95
+    },
+    {
+      "id": "port_hazira_pharma",
+      "name": "Hazira Port Surat (Alternative)",
+      "type": "port",
+      "is_primary": false,
+      "share_of_volume": 0.2,
+      "capacity_utilization": 0.58,
+      "availability": 0.96
+    },
+    {
+      "id": "factory_sanand",
+      "name": "Sterile Injectable Manufacturing Plant (Sanand)",
+      "type": "factory",
+      "capacity_utilization": 0.82,
+      "inventory_days": 25.0,
+      "safety_stock_days": 9.0,
+      "importance_weight": 0.92
+    },
+    {
+      "id": "wh_changodar",
+      "name": "Changodar Central Pharma Warehouse",
+      "type": "warehouse",
+      "capacity_utilization": 0.74,
+      "inventory_days": 30.0,
+      "safety_stock_days": 11.0
+    },
+    {
+      "id": "dc_national_retail",
+      "name": "National Pharmacy Distributor Network",
+      "type": "distribution_center",
+      "capacity_utilization": 0.75
+    }
+  ],
+  "edges": [
+    {
+      "id": "e_mum_sanand",
+      "source": "sup_vial_primary",
+      "target": "factory_sanand",
+      "distance_km": 520,
+      "transit_time_days": 1.4,
+      "transport_cost_per_unit": 32.0,
+      "mode": "Road",
+      "is_primary": true
+    },
+    {
+      "id": "e_ank_sanand",
+      "source": "sup_api_chem",
+      "target": "factory_sanand",
+      "distance_km": 210,
+      "transit_time_days": 0.6,
+      "transport_cost_per_unit": 16.0,
+      "mode": "Road",
+      "is_alternate": true
+    },
+    {
+      "id": "e_mundra_sanand",
+      "source": "port_mundra_pharma",
+      "target": "factory_sanand",
+      "distance_km": 340,
+      "transit_time_days": 1.0,
+      "transport_cost_per_unit": 26.0,
+      "mode": "Road",
+      "is_primary": true
+    },
+    {
+      "id": "e_hazira_sanand",
+      "source": "port_hazira_pharma",
+      "target": "factory_sanand",
+      "distance_km": 280,
+      "transit_time_days": 0.8,
+      "transport_cost_per_unit": 22.0,
+      "mode": "Road",
+      "is_alternate": true
+    },
+    {
+      "id": "e_sanand_wh",
+      "source": "factory_sanand",
+      "target": "wh_changodar",
+      "distance_km": 25,
+      "transit_time_days": 0.1,
+      "transport_cost_per_unit": 5.0,
+      "mode": "Road",
+      "is_primary": true
+    },
+    {
+      "id": "e_changodar_dc",
+      "source": "wh_changodar",
+      "target": "dc_national_retail",
+      "distance_km": 480,
+      "transit_time_days": 1.2,
+      "transport_cost_per_unit": 36.0,
+      "mode": "Road",
+      "is_primary": true
+    }
+  ]
+}

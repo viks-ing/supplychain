@@ -1,0 +1,140 @@
+{
+  "id": "automotive_chennai",
+  "name": "Representative / Demonstration Supply Network: Passenger Vehicle Assembly (Chennai)",
+  "industry": "Automotive",
+  "region": "Tamil Nadu Auto Cluster",
+  "network_depth": 5,
+  "nodes": [
+    {
+      "id": "sup_tier1_engine",
+      "name": "Powertrain & Gearbox Supplier (Coimbatore)",
+      "type": "supplier",
+      "is_primary": true,
+      "share_of_supply": 0.6,
+      "reliability": 0.96,
+      "availability": 0.95
+    },
+    {
+      "id": "sup_ecu_import",
+      "name": "ECU & Semiconductor Modules (Germany/Japan)",
+      "type": "supplier",
+      "is_primary": true,
+      "share_of_supply": 0.4,
+      "reliability": 0.92,
+      "availability": 0.9
+    },
+    {
+      "id": "port_ennore",
+      "name": "Kamarajar (Ennore) Automobile Port",
+      "type": "port",
+      "is_primary": true,
+      "share_of_volume": 0.85,
+      "capacity_utilization": 0.76,
+      "availability": 0.94
+    },
+    {
+      "id": "port_chennai_auto",
+      "name": "Chennai Seaport (Alternative)",
+      "type": "port",
+      "is_primary": false,
+      "share_of_volume": 0.15,
+      "capacity_utilization": 0.85,
+      "availability": 0.9
+    },
+    {
+      "id": "factory_sriperumbudur",
+      "name": "Vehicle Mega Assembly Plant (Sriperumbudur)",
+      "type": "factory",
+      "capacity_utilization": 0.88,
+      "inventory_days": 12.0,
+      "safety_stock_days": 4.0,
+      "importance_weight": 0.95
+    },
+    {
+      "id": "wh_oragadam",
+      "name": "Finished Vehicle Yard (Oragadam)",
+      "type": "warehouse",
+      "capacity_utilization": 0.82,
+      "inventory_days": 15.0,
+      "safety_stock_days": 5.0
+    },
+    {
+      "id": "dc_dealers_south",
+      "name": "Regional Dealership Consolidation Center",
+      "type": "distribution_center",
+      "capacity_utilization": 0.7
+    }
+  ],
+  "edges": [
+    {
+      "id": "e_cbe_chn",
+      "source": "sup_tier1_engine",
+      "target": "factory_sriperumbudur",
+      "distance_km": 500,
+      "transit_time_days": 1.5,
+      "transport_cost_per_unit": 65.0,
+      "mode": "Road",
+      "is_primary": true
+    },
+    {
+      "id": "e_sea_ecu",
+      "source": "sup_ecu_import",
+      "target": "port_ennore",
+      "distance_km": 7200,
+      "transit_time_days": 18.0,
+      "transport_cost_per_unit": 85.0,
+      "mode": "Sea",
+      "is_primary": true
+    },
+    {
+      "id": "e_sea_ecu_alt",
+      "source": "sup_ecu_import",
+      "target": "port_chennai_auto",
+      "distance_km": 7150,
+      "transit_time_days": 18.5,
+      "transport_cost_per_unit": 90.0,
+      "mode": "Sea",
+      "is_alternate": true
+    },
+    {
+      "id": "e_ennore_srip",
+      "source": "port_ennore",
+      "target": "factory_sriperumbudur",
+      "distance_km": 65,
+      "transit_time_days": 0.3,
+      "transport_cost_per_unit": 15.0,
+      "mode": "Road",
+      "is_primary": true
+    },
+    {
+      "id": "e_chn_srip",
+      "source": "port_chennai_auto",
+      "target": "factory_sriperumbudur",
+      "distance_km": 55,
+      "transit_time_days": 0.4,
+      "transport_cost_per_unit": 18.0,
+      "mode": "Road",
+      "is_alternate": true
+    },
+    {
+      "id": "e_srip_orag",
+      "source": "factory_sriperumbudur",
+      "target": "wh_oragadam",
+      "distance_km": 20,
+      "transit_time_days": 0.1,
+      "transport_cost_per_unit": 8.0,
+      "mode": "Road",
+      "is_primary": true
+    },
+    {
+      "id": "e_orag_dealers",
+      "source": "wh_oragadam",
+      "target": "dc_dealers_south",
+      "distance_km": 400,
+      "transit_time_days": 1.0,
+      "transport_cost_per_unit": 45.0,
+      "mode": "Road",
+      "is_primary": true
+    }
+  ]
+}

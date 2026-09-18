@@ -1,0 +1,140 @@
+{
+  "id": "electronics_hyderabad",
+  "name": "Representative / Demonstration Supply Network: Consumer Electronics (Hyderabad)",
+  "industry": "Electronics",
+  "region": "Telangana & Andhra Pradesh",
+  "network_depth": 5,
+  "nodes": [
+    {
+      "id": "sup_chip_primary",
+      "name": "Primary Semiconductor Foundry (Taiwan/S.Korea)",
+      "type": "supplier",
+      "is_primary": true,
+      "share_of_supply": 0.7,
+      "reliability": 0.94,
+      "availability": 0.95
+    },
+    {
+      "id": "sup_pcb_alt",
+      "name": "Domestic PCB & Passive Supplier (Bengaluru)",
+      "type": "supplier",
+      "is_primary": false,
+      "share_of_supply": 0.3,
+      "reliability": 0.88,
+      "availability": 0.92
+    },
+    {
+      "id": "port_chennai",
+      "name": "Chennai Port Gateway",
+      "type": "port",
+      "is_primary": true,
+      "share_of_volume": 0.75,
+      "capacity_utilization": 0.78,
+      "availability": 0.92
+    },
+    {
+      "id": "port_krishnapatnam",
+      "name": "Krishnapatnam Port (Alternative)",
+      "type": "port",
+      "is_primary": false,
+      "share_of_volume": 0.25,
+      "capacity_utilization": 0.55,
+      "availability": 0.95
+    },
+    {
+      "id": "factory_hyd",
+      "name": "Fab City Electronic Assembly Plant (Hyderabad)",
+      "type": "factory",
+      "capacity_utilization": 0.82,
+      "inventory_days": 18.0,
+      "safety_stock_days": 6.0,
+      "importance_weight": 0.9
+    },
+    {
+      "id": "wh_secunderabad",
+      "name": "Central Finished Goods Hub (Secunderabad)",
+      "type": "warehouse",
+      "capacity_utilization": 0.7,
+      "inventory_days": 22.0,
+      "safety_stock_days": 8.0
+    },
+    {
+      "id": "dc_south",
+      "name": "South India Distribution Center",
+      "type": "distribution_center",
+      "capacity_utilization": 0.75
+    }
+  ],
+  "edges": [
+    {
+      "id": "e_sea_chennai",
+      "source": "sup_chip_primary",
+      "target": "port_chennai",
+      "distance_km": 4200,
+      "transit_time_days": 12.0,
+      "transport_cost_per_unit": 45.0,
+      "mode": "Sea",
+      "is_primary": true
+    },
+    {
+      "id": "e_sea_krishna",
+      "source": "sup_chip_primary",
+      "target": "port_krishnapatnam",
+      "distance_km": 4350,
+      "transit_time_days": 13.0,
+      "transport_cost_per_unit": 52.0,
+      "mode": "Sea",
+      "is_alternate": true
+    },
+    {
+      "id": "e_road_blr_hyd",
+      "source": "sup_pcb_alt",
+      "target": "factory_hyd",
+      "distance_km": 570,
+      "transit_time_days": 1.5,
+      "transport_cost_per_unit": 22.0,
+      "mode": "Road",
+      "is_alternate": true
+    },
+    {
+      "id": "e_chennai_hyd",
+      "source": "port_chennai",
+      "target": "factory_hyd",
+      "distance_km": 630,
+      "transit_time_days": 2.0,
+      "transport_cost_per_unit": 35.0,
+      "mode": "Road",
+      "is_primary": true
+    },
+    {
+      "id": "e_krishna_hyd",
+      "source": "port_krishnapatnam",
+      "target": "factory_hyd",
+      "distance_km": 460,
+      "transit_time_days": 1.5,
+      "transport_cost_per_unit": 38.0,
+      "mode": "Road",
+      "is_alternate": true
+    },
+    {
+      "id": "e_fac_wh",
+      "source": "factory_hyd",
+      "target": "wh_secunderabad",
+      "distance_km": 45,
+      "transit_time_days": 0.2,
+      "transport_cost_per_unit": 6.0,
+      "mode": "Road",
+      "is_primary": true
+    },
+    {
+      "id": "e_wh_dc",
+      "source": "wh_secunderabad",
+      "target": "dc_south",
+      "distance_km": 380,
+      "transit_time_days": 1.0,
+      "transport_cost_per_unit": 18.0,
+      "mode": "Road",
+      "is_primary": true
+    }
+  ]
+}
