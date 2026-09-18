@@ -23,9 +23,13 @@ print("\n=== 2. Testing Model Metrics ===")
 status, body = test_url('http://127.0.0.1:8000/model-metrics')
 metrics = json.loads(body)
 print(f"Status: {status}")
-print("XGBoost Cost Impact R2:", metrics['targets']['cost_impact_pct']['xgboost']['r2'])
-print("XGBoost Lead Time R2:", metrics['targets']['lead_time_impact_days']['xgboost']['r2'])
-print("XGBoost Risk Score R2:", metrics['targets']['risk_score']['xgboost']['r2'])
+print("Available Targets in Metrics:")
+for tgt_name, tgt_metrics in metrics.get('targets', {}).items():
+    if tgt_metrics.get('task') == 'classification':
+        print(f" - [Classification] {tgt_name} -> Accuracy: {tgt_metrics.get('accuracy')}, F1: {tgt_metrics.get('f1_score')}, ROC-AUC: {tgt_metrics.get('roc_auc')}")
+    else:
+        print(f" - [Regression] {tgt_name} -> R2: {tgt_metrics.get('r2')}, RMSE: {tgt_metrics.get('rmse')}, MAE: {tgt_metrics.get('mae')}")
+
 
 print("\n=== 3. Testing Company Presets ===")
 status, body = test_url('http://127.0.0.1:8000/presets/companies')

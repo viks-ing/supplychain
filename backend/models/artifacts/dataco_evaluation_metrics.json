@@ -45,7 +45,12 @@
       "accuracy": 0.9749,
       "precision": 0.9562,
       "recall": 0.9999,
+      "specificity": 0.9444,
+      "balanced_accuracy": 0.9722,
       "f1_score": 0.9776,
+      "matthews_corrcoef": 0.9503,
+      "false_positive_rate": 0.0556,
+      "false_negative_rate": 0.0001,
       "roc_auc": 0.9964,
       "confusion_matrix": [
         [
@@ -56,7 +61,13 @@
           1,
           19795
         ]
-      ]
+      ],
+      "confusion_matrix_breakdown": {
+        "true_negatives": 15402,
+        "false_positives": 906,
+        "false_negatives": 1,
+        "true_positives": 19795
+      }
     },
     "delay_days": {
       "task": "regression",

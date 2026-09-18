@@ -15,7 +15,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder, StandardScaler
 from sklearn.metrics import (
     accuracy_score, precision_score, recall_score, f1_score, roc_auc_score,
-    mean_absolute_error, mean_squared_error, r2_score, confusion_matrix
+    mean_absolute_error, mean_squared_error, r2_score, confusion_matrix,
+    matthews_corrcoef, balanced_accuracy_score
 )
 import xgboost as xgb
 import joblib
@@ -83,7 +84,15 @@ def train_dataco_models():
     auc = float(roc_auc_score(y_test_late, y_prob_late))
     cm = confusion_matrix(y_test_late, y_pred_late).tolist()
     
-    print(f"  Late Delivery Risk -> Accuracy: {acc*100:.2f}%, F1: {f1:.4f}, ROC-AUC: {auc:.4f}, Precision: {prec:.4f}, Recall: {rec:.4f}")
+    tn, fp = cm[0][0], cm[0][1]
+    fn, tp = cm[1][0], cm[1][1]
+    specificity = float(tn / (tn + fp)) if (tn + fp) > 0 else 0.0
+    fpr = float(fp / (fp + tn)) if (fp + tn) > 0 else 0.0
+    fnr = float(fn / (fn + tp)) if (fn + tp) > 0 else 0.0
+    balanced_acc = float((rec + specificity) / 2.0)
+    mcc = float(matthews_corrcoef(y_test_late, y_pred_late))
+    
+    print(f"  Late Delivery Risk -> Accuracy: {acc*100:.2f}%, Specificity: {specificity*100:.2f}%, F1: {f1:.4f}, ROC-AUC: {auc:.4f}, MCC: {mcc:.4f}")
     
     clf_path = os.path.join(artifacts_dir, "dataco_late_delivery_xgb.joblib")
     joblib.dump(xgb_classifier, clf_path)
@@ -94,9 +103,20 @@ def train_dataco_models():
         'accuracy': round(acc, 4),
         'precision': round(prec, 4),
         'recall': round(rec, 4),
+        'specificity': round(specificity, 4),
+        'balanced_accuracy': round(balanced_acc, 4),
         'f1_score': round(f1, 4),
+        'matthews_corrcoef': round(mcc, 4),
+        'false_positive_rate': round(fpr, 4),
+        'false_negative_rate': round(fnr, 4),
         'roc_auc': round(auc, 4),
-        'confusion_matrix': cm
+        'confusion_matrix': cm,
+        'confusion_matrix_breakdown': {
+            'true_negatives': int(tn),
+            'false_positives': int(fp),
+            'false_negatives': int(fn),
+            'true_positives': int(tp)
+        }
     }
     
     # Feature importances for classification

@@ -42,15 +42,44 @@ def evaluate_classification(y_true: np.ndarray, y_pred: np.ndarray, y_prob: np.n
     auc = float(roc_auc_score(y_true, y_prob)) if len(np.unique(y_true)) == 2 else 0.0
     cm = confusion_matrix(y_true, y_pred).tolist()
     
+    # Comprehensive metrics derived strictly according to the confusion matrix
+    if len(cm) == 2 and len(cm[0]) == 2:
+        tn, fp = cm[0][0], cm[0][1]
+        fn, tp = cm[1][0], cm[1][1]
+        specificity = float(tn / (tn + fp)) if (tn + fp) > 0 else 0.0
+        fpr = float(fp / (fp + tn)) if (fp + tn) > 0 else 0.0
+        fnr = float(fn / (fn + tp)) if (fn + tp) > 0 else 0.0
+        balanced_acc = float((rec + specificity) / 2.0)
+        mcc = float(matthews_corrcoef(y_true, y_pred))
+    else:
+        tn, fp, fn, tp = 0, 0, 0, 0
+        specificity = 0.0
+        fpr = 0.0
+        fnr = 0.0
+        balanced_acc = acc
+        mcc = 0.0
+    
     return {
         "task": "classification",
         "accuracy": round(acc, 4),
         "precision": round(prec, 4),
         "recall": round(rec, 4),
+        "specificity": round(specificity, 4),
+        "balanced_accuracy": round(balanced_acc, 4),
         "f1_score": round(f1, 4),
+        "matthews_corrcoef": round(mcc, 4),
+        "false_positive_rate": round(fpr, 4),
+        "false_negative_rate": round(fnr, 4),
         "roc_auc": round(auc, 4),
-        "confusion_matrix": cm
+        "confusion_matrix": cm,
+        "confusion_matrix_breakdown": {
+            "true_negatives": int(tn),
+            "false_positives": int(fp),
+            "false_negatives": int(fn),
+            "true_positives": int(tp)
+        }
     }
+
 
 
 def evaluate_regression(y_true: np.ndarray, y_pred: np.ndarray) -> Dict[str, Any]:

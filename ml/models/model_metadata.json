@@ -123,5 +123,64 @@
       },
       "best_model": "xgboost"
     }
+  },
+  "classification_confusion_matrices": {
+    "risk_tier_multiclass": {
+      "classes": ["Low", "Moderate", "High", "Critical"],
+      "accuracy": 0.9405,
+      "balanced_accuracy": 0.909,
+      "cohen_kappa": 0.8888,
+      "macro_precision": 0.9034,
+      "macro_recall": 0.909,
+      "macro_f1": 0.905,
+      "confusion_matrix": [
+        [499, 24, 0, 0],
+        [8, 215, 11, 0],
+        [0, 4, 66, 1],
+        [0, 0, 2, 10]
+      ]
+    },
+    "high_risk_binary_alert": {
+      "condition": "risk_score > 50.0",
+      "accuracy": 0.9821,
+      "precision": 0.8778,
+      "recall_sensitivity": 0.9518,
+      "specificity": 0.9855,
+      "balanced_accuracy": 0.9686,
+      "f1_score": 0.9133,
+      "matthews_corrcoef": 0.9043,
+      "false_positive_rate": 0.0145,
+      "false_negative_rate": 0.0482,
+      "confusion_matrix": [
+        [746, 11],
+        [4, 79]
+      ]
+    },
+    "critical_delay_alert": {
+      "condition": "delay_days > 5.0",
+      "accuracy": 0.9833,
+      "precision": 0.949,
+      "recall_sensitivity": 0.9613,
+      "specificity": 0.9883,
+      "f1_score": 0.9551,
+      "matthews_corrcoef": 0.9449,
+      "confusion_matrix": [
+        [677, 8],
+        [6, 149]
+      ]
+    },
+    "cost_surge_alert": {
+      "condition": "cost_impact_pct > 15.0%",
+      "accuracy": 0.9679,
+      "precision": 0.9516,
+      "recall_sensitivity": 0.9609,
+      "specificity": 0.9719,
+      "f1_score": 0.9562,
+      "matthews_corrcoef": 0.9309,
+      "confusion_matrix": [
+        [518, 15],
+        [12, 295]
+      ]
+    }
   }
 }
